@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>App client</title>
+</head>
+<body>
+    <h1>App Client</h1>
+
+    <span>PSG</span>
+    <button id="btnLike">Like</button>
+    <span id="spLikes"></span>
+
+    <script>
+        var btnLike = document.getElementById('btnLike');
+        var spLikes = document.getElementById('spLikes');
+        var nbLikes = 0;
+
+
+        btnLike.addEventListener('click', (e) => {
+            nbLikes += 1;
+            spLikes.innerText = nbLikes;
+
+            fetch('/like', {
+                method: 'POST',
+                headers: {
+                    'Content-Type':'application/json'
+                },
+                body: JSON.stringify({ nbLikes })
+            })
+            .then(res => res.json())
+            .then(res => {
+                console.log(res)
+            })
+        })
+
+        function init() {
+            fetchLikes();
+            setInterval(fetchLikes, 10 * 1000); // 10 secondes
+        }
+
+        function fetchLikes() {
+            fetch('/like')
+                .then(res => res.json())
+                .then(res => {
+                    nbLikes = res.nbLikes;
+                    spLikes.innerText = nbLikes;
+                })
+        }
+    
+        init();
+
+    </script>
+
+    
+</body>
+</html>

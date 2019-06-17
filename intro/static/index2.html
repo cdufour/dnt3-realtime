@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>App client</title>
+</head>
+<body>
+    <h1>App Client</h1>
+
+    <span>PSG</span>
+    <button id="btnLike">Like</button>
+    <span id="spLikes"></span>
+    <select id="selectSport">
+        <option value="none">Choisir un sport</option>
+        <option value="foot">Foot</option>
+        <option value="tennis">Tennis</option>
+    </select>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
+
+    <script>
+        var btnLike = document.getElementById('btnLike');
+        var spLikes = document.getElementById('spLikes');
+        var selectSport = document.getElementById('selectSport');
+        var nbLikes = 0;
+        var socket = io({transports: ['websocket'], upgrade: false })
+
+        socket.on('likeServ', (data) => {
+            console.log('nbLike emis par le serveur ' + data);
+            spLikes.innerText = data;
+
+        })
+
+        btnLike.addEventListener('click', (e) => {
+            //nbLikes += 1;
+            //console.log(selectSport.value);
+            socket.emit('like', { sport:  selectSport.value});
+        })
+
+    </script>
+
+    
+</body>
+</html>

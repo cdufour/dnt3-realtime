@@ -1,0 +1,15 @@
+Créer un jeu de course en temps réel
+Deux joueurs s'affronteront en déplaçant un pion
+(div/image d'un rat, etc.)
+le premier atteignant la ligne d'arrivée a gagné
+
+L'interface permet de choisir si on est le player 1
+ou player 2 (menu déroulant par exemple)
+
+Une pression sur la barre d'espace fera avancer
+le pion d'un certain nombre de pixels
+
+Option:
+Au franchissement de la ligne d'arrivée, vous
+ferez apparaître un homme en marcel exhibant un pouce
+victorieux
