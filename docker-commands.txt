@@ -1,3 +1,0 @@
-
-# connexion à redis_cli
-docker run -it --link aston-redis:redis --rm redis redis-cli -h redis -p 6379
