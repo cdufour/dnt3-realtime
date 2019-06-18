@@ -10,6 +10,12 @@ app.use(express.static('static'));
 var namespaceHandler = (namespace) => {
     return (socket) => {
         socket.emit('event', 'Vous avez rejoint ' + namespace.name);
+
+        // renvoie les données
+        socket.on('event', data => {
+            socket.broadcast.emit('event', data)
+        })
+        
     }
 }
 

@@ -1,0 +1,12 @@
+Créer une application de suivi de scores sportifs en temps réel.
+L'app devra permettre
+1/ à un administrateur 
+    d'enregistrer des matchs
+    d'enregistrer des scores
+
+2/ à un client de consulter la page sportive et de voir les scores
+évoluer en temps réel (au moment où l'admin mettra un score à jour)
+
+Mongodb/mysql pour l'enregistrement des matchs/scores
+
+
