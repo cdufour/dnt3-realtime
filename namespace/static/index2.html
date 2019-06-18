@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Namespace</title>
+</head>
+<body>
+    <h1>Socket.io Rooms (namespace)</h1>
+
+    <button id="one">Namespace1</button>
+    <button id="two">Namespace2</button>
+
+    <ul id="list_one"></ul>
+    <ul id="list_two"></ul>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
+    <script>
+        var one = io('/namespace1', {transports: ['websocket'], upgrade: false });
+        var two = io('/namespace2', {transports: ['websocket'], upgrade: false });
+
+        var btnOne       = document.getElementById('one');
+        var btnTwo       = document.getElementById('two');
+        var ListOne      = document.getElementById('list_one');
+        var ListTwo      = document.getElementById('list_two');
+
+        
+        // Ecoute d'événements
+        btnOne.addEventListener('click', (e) => {
+            one.emit('event', 'Hello from one')
+        })
+        btnTwo.addEventListener('click', (e) => {
+            two.emit('event', 'Hello from two')
+        })
+
+        var addLi = (ul) => {
+            return (message) => {
+                var li = document.createElement('li');
+                li.appendChild(document.createTextNode(message));
+                // équivalent à li.innerText = message
+                ul.appendChild(li);
+            }
+        }
+
+        one.on('event', addLi(ListOne));
+        two.on('event', addLi(ListTwo));
+        
+    </script>
+</body>
+</html>

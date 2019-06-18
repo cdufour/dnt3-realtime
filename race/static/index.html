@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Race</title>
+    <style>
+    #p1 {
+        width: 100px;
+        height: 100px;
+        background-color: green;
+        position: absolute;
+        left: 0;
+        top: 0
+    }
+    #p2 {
+        width: 100px;
+        height: 100px;
+        background-color: orange;
+        position: absolute;
+        left: 0;
+        top: 110px
+    }
+    #board {
+        position: relative
+    }
+
+    #finish {
+        width: 1px;
+        height: 200px;
+        border: 1px dotted red;
+        position: absolute;
+        top: 0;
+        left: 300px
+    }
+    </style>
+</head>
+
+<body>
+    <h1>Jeu: RACE</h1>
+    <select id="selectPlayer">
+        <option value="p1">Joueur 1</option>
+        <option value="p2">Joueur 2</option>
+    </select>
+    <div id="board">
+        <div id="p1">Joueur 1</div>
+        <div id="p2">Joueur 2</div>
+        <div id="finish"></div>
+    </div>
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
+    <script>
+        var socket = io({transports: ['websocket'], upgrade: false });
+
+        var selectPlayer = document.getElementById('selectPlayer');
+        var p1 = document.getElementById('p1');
+        var p2 = document.getElementById('p2');
+
+        var positions = {
+            p1: 0,
+            p2: 0
+        }
+        
+        document.body.addEventListener('keyup', (e) => {
+            var player = document.getElementById(selectPlayer.value);
+            if (e.code == 'Space') {
+                positions[selectPlayer.value] += 10;
+                player.style.left = positions[selectPlayer.value] + 'px';
+                
+                // notifier le déplacement au serveur
+                socket.emit('move', { 
+                    player: selectPlayer.value, 
+                    position: positions[selectPlayer.value] 
+                })
+
+                // Ligne d'arrivée franchie ?
+                if (positions[selectPlayer.value] > 300) {
+                    console.log("FINISH !!!")
+                }
+                
+            }
+        })
+        
+        socket.on('update position', data => {
+            positions[data.player] = data.position;
+            document.getElementById(data.player)
+                .style.left = positions[data.player] + 'px'
+        })
+        
+    </script>
+</body>
+</html>

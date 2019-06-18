@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Namespace</title>
+</head>
+<body>
+    <h1>Socket.io Rooms (namespace)</h1>
+
+    <label for="name">Name</label>
+    <input type="text" id="name">
+    <button id="btnHello">Hello</button>
+
+    <label for="room">Room</label>
+    <input type="text" id="room">
+    <button id="btnJoinRoom">Join Room</button>
+
+    <ul id="list"></ul>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
+    <script>
+        var socket = io({transports: ['websocket'], upgrade: false });
+
+        var btnHello        = document.getElementById('btnHello');
+        var name            = document.getElementById('name');
+        var btnJoinRoom     = document.getElementById('btnJoinRoom');
+        var room            = document.getElementById('room');
+        var list            = document.getElementById('list');
+        
+        // Ecoute d'événements
+        btnJoinRoom.addEventListener('click', (e) => {
+            socket.emit('room.join', room.value)
+        })
+
+        btnHello.addEventListener('click', (e) => {
+            socket.emit('event', {
+                name: name.value,
+                room: room.value
+            })
+        })
+
+        var addLi = (message) => {
+            var li = document.createElement('li');
+            li.appendChild(document.createTextNode(message));
+            // équivalent à li.innerText = message
+            list.appendChild(li);
+        }
+
+        socket.on('event', addLi);
+        
+    </script>
+</body>
+</html>
