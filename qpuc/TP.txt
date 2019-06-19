@@ -1,0 +1,34 @@
+TP Question Pour Un Champion
+
+Créer une application en temps réel permettant à un animateur
+d'envoyer des questions à choix multiples (une seule bonne réponse) à un ensemble de 
+participants connectés en même temps.
+
+L'app proposera une salle de jeu à une url.
+Le client se rendant à l'url de la salle, donnera son nom. Il apparaîtra alors
+dans la liste des participants connectés. On interdira deux fois le même nom.
+
+A tout moment l'animateur pourra envoyer un signal "à vos marques/get ready" ; 
+affichant chez les participants au compte à compte 
+au terme duquel la question et les choix associés apparaissent.
+Les participants auront alors une durée maximale - sous forme d'un compte à rebours -
+pour répondre (ex: 10 sec.).
+
+Lorsque cette durée est écoulée:
+    - On indique au client quel était la bonne réponse à fournir
+    - La zone résultats affiche la liste des participants avec, pour chacun d'entre eux, 
+le temps de réponse, un indicateur de réussite/échec (couleur verte, pouce, etc.), les points obtenus.
+
+Barème: 
+ - bonne réponse: 1pt + 1pt de bonus si premier à avoir répondu
+ - mauvaise réponse: -1pt
+La zone classement général se met à jour.
+
+L'animateur peut renvoyer une autre question ou clore le jeu.
+
+Serveur: Nodejs/Express
+Base de données:
+Les questions/réponses seront stoquées en base Mongodb/sql (pour une réutilisation possible)
+Les réponses/points des participants se stoqués en Redis
+Client: JS pur/jQuery/framework au choix
+

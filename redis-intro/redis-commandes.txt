@@ -1,0 +1,47 @@
+REDIS
+Chocolatey
+
+SGBD, in-memory RAM
+K : "1"
+
+# strings
+set color rouge
+get color // => "rouge"
+incr / decr
+incrby / decrby
+
+# lists (tableau)
+lpush myList Jessy
+rpush myList 45
+lpop myList
+rpop myList
+llen myList
+
+# sets
+collection de valeurs uniques et non ordonnées
+sadd colors rouge vert blanc // ajoute la valeur rouge au set colors
+smembers colors
+sismember colors vert
+srem colors vert // retire la clé vert du set colors
+
+# hashes
+hmset user1 name Jessy age 14 // création d'un hash à plusieurs propriétés
+hset user1 strong true // ajoute la propriétés
+hdel user1 age // supprime
+hget user1 name // renvoie la valeur
+hgetall user1 // renvoie toutes les clés/valeurs
+
+# sorted sets
+collection de valeurs ordonnées selon un "score" (poids) : clé
+numérique permettant d'ordonner les éléments
+zadd writers 1894 Celine
+zadd writers 1823 Flaubert
+zadd writers 1850 Maupassant
+zrange writers 0 -1 // => Flaubert, Maupassant, Celine
+
+
+
+
+# utile
+flushall // vide totalement la mémoiree
+exists key
