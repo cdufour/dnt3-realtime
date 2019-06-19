@@ -9,7 +9,7 @@ Le client se rendant à l'url de la salle, donnera son nom. Il apparaîtra alors
 dans la liste des participants connectés. On interdira deux fois le même nom.
 
 A tout moment l'animateur pourra envoyer un signal "à vos marques/get ready" ; 
-affichant chez les participants au compte à compte 
+affichant chez les participants un compte à rebours 
 au terme duquel la question et les choix associés apparaissent.
 Les participants auront alors une durée maximale - sous forme d'un compte à rebours -
 pour répondre (ex: 10 sec.).
