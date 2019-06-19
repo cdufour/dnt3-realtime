@@ -24,7 +24,8 @@ Barème:
  - mauvaise réponse: -1pt
 La zone classement général se met à jour.
 
-L'animateur peut renvoyer une autre question ou clore le jeu.
+L'animateur peut envoyer une autre question ou clore le jeu.
+
 
 Serveur: Nodejs/Express
 Base de données:
