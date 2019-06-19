@@ -8,14 +8,14 @@ L'app proposera une salle de jeu à une url.
 Le client se rendant à l'url de la salle, donnera son nom. Il apparaîtra alors
 dans la liste des participants connectés. On interdira deux fois le même nom.
 
-A tout moment l'animateur pourra envoyer un signal "à vos marques/get ready" ; 
+A tout moment l'animateur pourra envoyer un signal "à vos marques/get ready"
 affichant chez les participants un compte à rebours 
 au terme duquel la question et les choix associés apparaissent.
 Les participants auront alors une durée maximale - sous forme d'un compte à rebours -
 pour répondre (ex: 10 sec.).
 
 Lorsque cette durée est écoulée:
-    - On indique au client quel était la bonne réponse à fournir
+    - On indique au client quelle était la bonne réponse à fournir
     - La zone résultats affiche la liste des participants avec, pour chacun d'entre eux, 
 le temps de réponse, un indicateur de réussite/échec (couleur verte, pouce, etc.), les points obtenus.
 
